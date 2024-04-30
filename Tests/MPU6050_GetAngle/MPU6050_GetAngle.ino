@@ -1,6 +1,6 @@
 
 #include "Wire.h"
-#include <MPU6050_light_custom.h>  //does only work if Library is in library folder
+#include <MPU6050_light.h>  //does only work if Library is in library folder
 
 MPU6050 mpu(Wire);
 

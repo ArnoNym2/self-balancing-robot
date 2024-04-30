@@ -1,0 +1,3 @@
+[submodule "libraries/MPU6050_light"]
+	path = libraries/MPU6050_light
+	url = https://github.com/ArnoNym2/MPU6050_light.git
