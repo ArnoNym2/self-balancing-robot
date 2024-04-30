@@ -1,9 +1,12 @@
 
 #include "Wire.h"
-#include <MPU6050_light.h> //does only work if Library is in library folder
+#include <MPU6050_light.h>  //does only work if Library is in library folder
 
 MPU6050 mpu(Wire);
+
 unsigned long timer = 0;
+uint64_t lastmicros = 0;
+uint32_t duration = 0;
 
 void setup() {
   Serial.begin(9600);
@@ -42,15 +45,22 @@ void setup() {
 }
 
 void loop() {
+
+  lastmicros = micros();
   mpu.update();
+  duration = micros() - lastmicros;
+
 
   if ((millis() - timer) > 1000) {  // print data every 1000ms
+
     Serial.print("X:");
     Serial.print(mpu.getAngleX());
     Serial.print(",Y:");
     Serial.print(mpu.getAngleY());
     Serial.print(",Z:");
-    Serial.println(mpu.getAngleZ());
+    Serial.print(mpu.getAngleZ());
+    Serial.print(",Duration:");
+    Serial.println(duration);
     timer = millis();
   }
   //delay(100);// Simulate running time with 100 ms
