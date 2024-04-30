@@ -1,3 +1,6 @@
 [submodule "libraries/MPU6050_light"]
 	path = libraries/MPU6050_light
 	url = https://github.com/ArnoNym2/MPU6050_light.git
+[submodule "libraries/ESP32TimerInterrupt"]
+	path = libraries/ESP32TimerInterrupt
+	url = https://github.com/ArnoNym2/ESP32TimerInterrupt.git
