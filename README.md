@@ -5,3 +5,7 @@ A self balancing robot
 Was testet with this parts:
  - SBC-NodeMCU-ESP32 (Joy-it)
  - GY-521 (Elegoo)
+
+# Todo
+## Nice to have
+ - Set Wrap Angle in Library
