@@ -1,6 +1,6 @@
 
 #include "Wire.h"
-#include <MPU6050_light.h>  //does only work if Library is in library folder
+#include <MPU6050_light_custom.h>  //does only work if Library is in library folder
 
 MPU6050 mpu(Wire);
 
@@ -51,7 +51,7 @@ void loop() {
   duration = micros() - lastmicros;
 
 
-  if ((millis() - timer) > 1000) {  // print data every 1000ms
+  if ((millis() - timer) > 1000) {  // print data every 100ms
 
     Serial.print("X:");
     Serial.print(mpu.getAngleX());

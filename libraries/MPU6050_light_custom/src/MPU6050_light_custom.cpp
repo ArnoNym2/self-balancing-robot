@@ -6,7 +6,7 @@
  *              initial author (v1.5.2)
  */
 
-#include "MPU6050_light.h"
+#include "MPU6050_light_custom.h"
 #include "Arduino.h"
 
 /* Wrap an angle in the range [-limit,+limit] (special thanks to Edgar Bonet!) */
@@ -195,7 +195,7 @@ void MPU6050::update(){
   // estimate tilt angles: this is an approximation for small angles!
   float sgZ = (accZ>=0)-(accZ<0); // allow one angle to go from -180 to +180 degrees
   angleAccX =   atan2(accY, sgZ*sqrt(accZ*accZ + accX*accX)) * RAD_2_DEG; // [-180,+180] deg
-  angleAccY = - atan2(accX,     sqrt(accZ*accZ + accY*accY)) * RAD_2_DEG; // [- 90,+ 90] deg
+  angleAccY = - atan2(accX, sgZ*    sqrt(accZ*accZ + accY*accY)) * RAD_2_DEG; // [- 90,+ 90] deg //Not any more
 
   unsigned long Tnew = millis();
   float dt = (Tnew - preInterval) * 1e-3;
@@ -203,8 +203,8 @@ void MPU6050::update(){
 
   // Correctly wrap X and Y angles (special thanks to Edgar Bonet!)
   // https://github.com/gabriel-milan/TinyMPU6050/issues/6
-  angleX = wrap(filterGyroCoef*(angleAccX + wrap(angleX +     gyroX*dt - angleAccX,180)) + (1.0-filterGyroCoef)*angleAccX,180);
-  angleY = wrap(filterGyroCoef*(angleAccY + wrap(angleY + sgZ*gyroY*dt - angleAccY, 90)) + (1.0-filterGyroCoef)*angleAccY, 90);
+  angleX = wrap(filterGyroCoef*(angleAccX + wrap(angleX +     gyroX*dt - angleAccX,180)) + (1.0-filterGyroCoef)*angleAccX, 180);
+  angleY = wrap(filterGyroCoef*(angleAccY + wrap(angleY + sgZ*gyroY*dt - angleAccY, 180)) + (1.0-filterGyroCoef)*angleAccY, 180); //wrap also to 180 deg
   angleZ += gyroZ*dt; // not wrapped (to do???)
 
 }
