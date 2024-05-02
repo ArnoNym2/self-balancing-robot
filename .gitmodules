@@ -4,3 +4,6 @@
 [submodule "libraries/ESP32TimerInterrupt"]
 	path = libraries/ESP32TimerInterrupt
 	url = https://github.com/ArnoNym2/ESP32TimerInterrupt.git
+[submodule "libraries/AutoPID"]
+	path = libraries/AutoPID
+	url = https://github.com/ArnoNym2/AutoPID.git
