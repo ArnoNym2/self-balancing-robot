@@ -9,3 +9,4 @@ Was testet with this parts:
 # Todo
 ## Nice to have
  - Set Wrap Angle in Library
+ - Twiggle Algorithm finetuning
