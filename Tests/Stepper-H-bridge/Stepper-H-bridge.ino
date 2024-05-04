@@ -26,19 +26,35 @@ const int stepsPerRevolution = 200;  // change this to fit the number of steps p
 // initialize the stepper library on pins 8 through 11:
 Stepper myStepper(stepsPerRevolution, 23, 22, 32, 33);
 
-int stepCount = 0;         // number of steps the motor has taken
+volatile int stepCount = 0;  // number of steps the motor has taken
+
+void IRAM_ATTR Ext_INT1_ISR() {
+  myStepper.step(1);
+  
+  stepCount++;
+}
+
+
 
 void setup() {
   // initialize the serial port:
   Serial.begin(9600);
+  pinMode(4, INPUT_PULLDOWN);  //Interput pin
+  attachInterrupt(4, Ext_INT1_ISR, CHANGE);
+
+  pinMode(2, OUTPUT);
+  tone(2, 100);
+
+  pinMode(12, INPUT);
 }
 
 void loop() {
   // step one step:
-  myStepper.step(1);
+
   Serial.print("steps:");
   Serial.println(stepCount);
-  stepCount++;
-  delay(50);
-}
+  tone(2, map(analogRead(12), 0, 4095, 1, 100));
 
+  delay(100);
+
+}
