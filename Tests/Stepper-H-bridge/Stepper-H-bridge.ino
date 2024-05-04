@@ -24,7 +24,7 @@ const int stepsPerRevolution = 200;  // change this to fit the number of steps p
 // for your motor
 
 // initialize the stepper library on pins 8 through 11:
-Stepper myStepper(stepsPerRevolution, 23, 22, 32, 33);
+Stepper myStepper(stepsPerRevolution, 25, 26, 32, 33);
 
 volatile int stepCount = 0;  // number of steps the motor has taken
 
