@@ -28,9 +28,7 @@ static void tone_task(void*){
     xQueueReceive(_tone_queue, &tone_msg, portMAX_DELAY);
     switch(tone_msg.tone_cmd){
       case TONE_START:
-        log_d("Task received from queue TONE_START: _pin=%d, frequency=%u Hz, duration=%lu ms", tone_msg.pin, tone_msg.frequency, tone_msg.duration);
 
-        log_d("Setup LED controll on channel %d", _channel);
         ledcAttachPin(tone_msg.pin, _channel);
         ledcWriteTone(_channel, tone_msg.frequency);
 
@@ -42,13 +40,13 @@ static void tone_task(void*){
         break;
 
       case TONE_END:
-        log_d("Task received from queue TONE_END: pin=%d", tone_msg.pin);
+
         ledcDetachPin(tone_msg.pin);
         ledcWriteTone(_channel, 0);
         break;
 
       case TONE_SET_CHANNEL:
-        log_d("Task received from queue TONE_SET_CHANNEL: channel=%d", tone_msg.channel);
+
         _channel = tone_msg.channel;
         break;
 
@@ -59,17 +57,17 @@ static void tone_task(void*){
 
 static int tone_init(){
   if(_tone_queue == NULL){
-    log_v("Creating tone queue");
+
     _tone_queue = xQueueCreate(128, sizeof(tone_msg_t));
     if(_tone_queue == NULL){
-      log_e("Could not create tone queue");
+
       return 0; // ERR
     }
-    log_v("Tone queue created");
+
   }
 
   if(_tone_task == NULL){
-    log_v("Creating tone task");
+
     xTaskCreate(
       tone_task, // Function to implement the task
       "toneTask", // Name of the task
@@ -79,16 +77,16 @@ static int tone_init(){
       &_tone_task  // Task handle.
       );
     if(_tone_task == NULL){
-      log_e("Could not create tone task");
+
       return 0; // ERR
     }
-    log_v("Tone task created");
+
   }
   return 1; // OK
 }
 
 void setToneChannel(uint8_t channel){
-  log_d("channel=%d", channel);
+
   if(tone_init()){
     tone_msg_t tone_msg = {
       .tone_cmd = TONE_SET_CHANNEL,
@@ -102,7 +100,7 @@ void setToneChannel(uint8_t channel){
 }
 
 void noTone(uint8_t _pin){
-  log_d("noTone was called");
+
   if(tone_init()){
     tone_msg_t tone_msg = {
       .tone_cmd = TONE_END,
@@ -121,7 +119,7 @@ void noTone(uint8_t _pin){
 // duration - time in ms - how long will the signal be outputted.
 //   If not provided, or 0 you must manually call noTone to end output
 void tone(uint8_t _pin, unsigned int frequency, unsigned long duration){
-  log_d("_pin=%d, frequency=%u Hz, duration=%lu ms", _pin, frequency, duration);
+
   if(tone_init()){
     tone_msg_t tone_msg = {
       .tone_cmd = TONE_START,
