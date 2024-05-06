@@ -7,3 +7,6 @@
 [submodule "libraries/AutoPID"]
 	path = libraries/AutoPID
 	url = https://github.com/ArnoNym2/AutoPID.git
+[submodule "libraries/Arduino-PID-Library"]
+	path = libraries/Arduino-PID-Library
+	url = https://github.com/ArnoNym2/Arduino-PID-Library.git
