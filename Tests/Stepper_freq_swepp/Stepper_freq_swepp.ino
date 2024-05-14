@@ -1,12 +1,12 @@
 #include <Stepper.h>
 
 
-const int stepsPerRevolution = 200;  // change this to fit the number of steps per revolution
+#define stepsPerRevolution = 200;  // change this to fit the number of steps per revolution
 
 Stepper myStepper(stepsPerRevolution, 25, 26, 32, 33);
 
 
-long freq = 0;
+int freq = 0;
 
 void IRAM_ATTR Ext_INT1_ISR() {
   //myStepper.step(direction);
@@ -23,5 +23,8 @@ void setup() {
 void loop() {
   tone(2, freq++);
   Serial.println(freq);
-  delay(100);
+  if (freq>(50*stepsPerRevolution){
+    freq = 0
+  }
+  delay(10);
 }
