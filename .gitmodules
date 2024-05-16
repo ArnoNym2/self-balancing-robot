@@ -10,3 +10,6 @@
 [submodule "libraries/Arduino-PID-Library"]
 	path = libraries/Arduino-PID-Library
 	url = https://github.com/ArnoNym2/Arduino-PID-Library.git
+[submodule "libraries/FastAccelStepper"]
+	path = libraries/FastAccelStepper
+	url = https://github.com/ArnoNym2/FastAccelStepper.git
