@@ -22,20 +22,29 @@ void playSound(sound melody) {
 
   switch (melody) {
     case duDi:
-      tone(2, 293 *2, 125);
-      tone(2, 392 *2, 125);
+      tone(2, 293 * 2, 125);
+
+
+      tone(2, 392 * 2, 125);
+
+
       delay(250);
       break;
     case diDu:
-      tone(2, 392 *2, 125);
-      tone(2, 293 *2, 125);
+      tone(2, 392 * 2, 125);
+
+      tone(2, 293 * 2, 125);
+ 
+
       delay(250);
 
       break;
     case bip:
-      tone(2, 392 *2, 125);
+      tone(2, 392 * 2, 125);
+
+
       delay(125);
- 
+
       break;
   }
 }
@@ -45,6 +54,8 @@ void setup() {
   pinMode(4, INPUT_PULLDOWN);  //Interput pin
   attachInterrupt(4, Ext_INT1_ISR, CHANGE);
   pinMode(2, OUTPUT);
+  pinMode(5, OUTPUT);
+  tone(5, 20);
 }
 
 void loop() {
