@@ -1,10 +1,12 @@
 #include "settings.h"
 void setup() {
-  // put your setup code here, to run once:
-
+  initializeDipSwitch(DIP);  //set the pin mode for every dip switch
+  if (!digitalRead(DIP.debug)) {
+    Serial.begin(115200);  //Start the Serial connection
+  }
+  
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-
 }
