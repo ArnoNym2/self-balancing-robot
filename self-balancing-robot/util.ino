@@ -5,3 +5,11 @@ void initializeDipSwitch(struct dipSwitch _dipSwitch){
   pinMode(_dipSwitch.offset, INPUT_PULLUP);
 
 }
+
+void saveOffset(){
+
+}
+
+void readOffset(){
+  
+}
