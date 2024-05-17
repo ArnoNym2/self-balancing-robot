@@ -1,6 +1,10 @@
 # Prerequisites
 *.d
 
+# Workspace
+
+.theia/
+
 # Compiled Object files
 *.slo
 *.lo
