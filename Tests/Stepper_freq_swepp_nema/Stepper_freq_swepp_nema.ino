@@ -4,22 +4,22 @@
 
 
 
-int freq = 20;
+int freq = 0;
 
 
 
 void setup() {
   Serial.begin(115200);
-  pinMode(5, OUTPUT);
+  pinMode(2, OUTPUT);
 }
 
 void loop() {
   tone(2, freq);
   //freq ++;
-  freq += 3;
+  freq += 10;
   Serial.println(freq);
   if (freq>(50000)){
     freq = 50000;
   }
-  delay(10);
+  delay(100);
 }
