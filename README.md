@@ -11,8 +11,8 @@ Was testet with this parts:
  - [ ] Disable driver below certain angle
 ## Helpful
  - [ ] Allow monitoring the gyro and accel data
- - [ ] Store Parameters in Flash
- - [ ] Use DIP switch to select different modes
+ - [x] Store Parameters in Flash
+ - [x] Use DIP switch to select different modes
  - [ ] Play startup sound
 ## Nice to have
  - [ ] Set Wrap Angle in Library
