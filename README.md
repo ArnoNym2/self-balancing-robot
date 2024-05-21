@@ -10,6 +10,7 @@ Was testet with this parts:
 ## Necessary#
  - [ ] Disable driver below certain angle
 ## Helpful
+ - [ ] Allow monitoring the gyro and accel data
  - [ ] Store Parameters in Flash
  - [ ] Use DIP switch to select different modes
  - [ ] Play startup sound
