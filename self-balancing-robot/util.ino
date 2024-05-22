@@ -49,17 +49,36 @@ void printOffset(mpuOffset _offset) {
 
 void printGraphs(){ //Prints the values in a way that allows to use Serial Plotter
 
-  dprint("Angle:");
+  //dprint("Angle:");
   dprint(Input);
-  dprint(",Speed:");
+  dprint("\t");
+  //dprint("Speed:");
   dprint(mpu.getGyroY());
-  dprint(",Accel:");
+  dprint("\t");
+  //dprint("\tAccel:");
   dprint(mpu.getAccY());
-  dprint(",pidAngle:");
+  dprint("\t");
+  //dprint("\tpidAngle:");
   dprint(Output);
-  dprint(",accelAngle:");
+  dprint("\t");
+  //dprint("\taccelAngle:");
   dprint(mpu.getAccAngleY());
-  dprintln(",")
+  dprint("\t");
+  //dprint("\tdAngle:");
+  dprint(dAngle);
+  dprint("\t");
+  //dprint("\tduration:");
+  dprint(duration);
+  dprint("\t");
+  //dprint("\tmotorRpm:");
+  dprint(60.*freq/stepsPerRevolution);
+  dprint("\t");
+  //dprint("\tstepsNeeded:");
+  dprint(stepsNeeded);
+  dprint("\t");
+  //dprint("\tdirection:");
+  dprint(direction);
+  dprintln("");
 
 
 

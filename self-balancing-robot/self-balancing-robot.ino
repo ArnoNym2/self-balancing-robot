@@ -20,6 +20,8 @@ float dAngle;
 uint32_t stepsNeeded;
 uint64_t freq;
 int8_t direction;
+bool overNeededAngle = false;  //True if the Angle is greater than the needed Angle
+int overNeededAngleMillis;
 
 struct pidCoefficients {
   double Kp;
@@ -28,9 +30,9 @@ struct pidCoefficients {
 };
 
 pidCoefficients pidValue = {  // Adapt this according to the vehicle
-  2,
-  0,
-  0
+  1,
+  0.5,
+  0.5
 };
 
 
@@ -106,11 +108,12 @@ PID pid(&Input, &Output, &Setpoint, pidValue.Kp, pidValue.Ki, pidValue.Kd, DIREC
 void setup() {
   Serial.begin(115200);
   initializeDipSwitch(DIP);  //set the pin mode for every dip switch
+  pinMode(LED_BUILTIN, OUTPUT);
   initializeStepper(stepperLeft);
   initializeStepper(stepperRight);
 
   EEPROM.begin(EEPROM_SIZE);
-  debugSetting = !digitalRead(DIP.debug);  // Read the debug setting from the DIP Switch
+  debugSetting = digitalRead(DIP.debug);  // Read the debug setting from the DIP Switch, if low than disable debug
 
 
   dprintln("Project self balancing robot");
@@ -128,7 +131,16 @@ void setup() {
     dprintln("Calculating  offset, please don't move");
     delay(1000);  // Wait a sec to let the sensor settle a moment
 
-    mpu.calcOffsets();                   //Calculate the offset
+    mpu.calcOffsets();  //Calculate the offset
+    offset.xAccel = mpu.getAccXoffset();
+    offset.yAccel = mpu.getAccYoffset();
+    offset.zAccel = mpu.getAccZoffset();
+    offset.xGyro = mpu.getGyroXoffset();
+    offset.yGyro = mpu.getGyroYoffset();
+    offset.zGyro = mpu.getGyroZoffset();
+
+
+
     saveOffset(offset);                  // save the offset
     printOffset(offset);                 //print the offset
     while (!digitalRead(DIP.offset)) {}  //Wait till the switch is set to off
@@ -150,10 +162,19 @@ void loop() {
   mpu.update();
   Input = mpu.getAngleY();
 
-  if (pid.Compute()) {                 // pid calculated new output
+
+  if (pid.Compute()) {  // pid calculated new output
+    if (abs(Input) > maxNeededAngle) {
+      tone(LED_BUILTIN, 8);  //Turn on LED if angle is greater than the maximal needed Angle
+      overNeededAngleMillis = millis();
+      overNeededAngle = true;
+    } else if (abs(Input) < maxNeededAngle && overNeededAngle == true && millis() - overNeededAngleMillis > 500) {  //We are in the right range
+      noTone(LED_BUILTIN);
+      overNeededAngle = false;
+    }
     duration = micros() - lastmicros;  // Calculate how long the last loop did take, we assume that the next loop has the same duration
     lastmicros = micros();
-    dAngle = Setpoint - Input;
+    dAngle = Setpoint - Output;
 
     stepsNeeded = (unsigned int)stepsPerRevolution / dAngle;  // Calculate how many steps are needed to reach pid's target Angle
     freq = 1000000 * stepsNeeded / duration;                  // The frequency needed to reach the given angle in Hz
@@ -163,9 +184,9 @@ void loop() {
     //set the direction by multiplying the direction with the direction bias
     //then write the pin if it is HIGH, else (it should be -1) set it to LOW
     digitalWrite(stepperLeft.directionPin, direction * stepperLeft.direction == 1 ? HIGH : LOW);
-    tone(stepperLeft.stepPin, freq);
+    //tone(stepperLeft.stepPin, freq);
     digitalWrite(stepperRight.directionPin, direction * stepperRight.direction == 1 ? HIGH : LOW);
-    tone(stepperRight.stepPin, freq);
+    // tone(stepperRight.stepPin, freq);
 
     printGraphs();
   }

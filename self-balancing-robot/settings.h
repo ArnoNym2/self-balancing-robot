@@ -13,8 +13,11 @@
 
 #define stepsPerRevolution 1600 // Steps needed for one rotation: With 1/8 microstepping its 200*8==1600
 
+#define maxNeededAngle 10 //maximum Angle where controler must work
 
 
+#define True true   //I'm dumb and probably will use both variants
+#define False false
 
 
 
