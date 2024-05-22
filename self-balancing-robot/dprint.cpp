@@ -2,7 +2,7 @@
 
 extern bool debugSetting;
 
-size_t nothing(){
+size_t nothing() {
   return 0;
 }
 
@@ -15,11 +15,11 @@ void dprintln(int message) {
 }
 
 void dprintln(float message) {
-  debugSetting ? Serial.println(message, 2) : nothing(); // Print the float with 2 decimal places
+  debugSetting ? Serial.println(message, 2) : nothing();  // Print the float with 2 decimal places
 }
 
 void dprintln(double message) {
-  debugSetting ? Serial.println(message, 2) : nothing(); // Print the double with 2 decimal places
+  debugSetting ? Serial.println(message, 2) : nothing();  // Print the double with 2 decimal places
 }
 
 void dprintln(unsigned int message) {
@@ -43,7 +43,7 @@ void dprintln(bool message) {
 }
 
 
-
+//Same without newline
 void dprint(const char* message) {
   debugSetting ? Serial.print(message) : nothing();
 }
@@ -53,11 +53,11 @@ void dprint(int message) {
 }
 
 void dprint(float message) {
-  debugSetting ? Serial.print(message, 2) : nothing(); // Print the float with 2 decimal places
+  debugSetting ? Serial.print(message, 2) : nothing();  // Print the float with 2 decimal places
 }
 
 void dprint(double message) {
-  debugSetting ? Serial.print(message, 2) : nothing(); // Print the double with 2 decimal places
+  debugSetting ? Serial.print(message, 2) : nothing();  // Print the double with 2 decimal places
 }
 
 void dprint(unsigned int message) {

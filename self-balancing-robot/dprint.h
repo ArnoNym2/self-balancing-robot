@@ -23,6 +23,7 @@ void dprint(byte message);
 void dprint(bool message);
 
 
+//Same without newline
 void dprintln(const char* message);
 
 void dprintln(int message);
