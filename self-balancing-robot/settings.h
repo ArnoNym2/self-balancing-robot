@@ -7,49 +7,14 @@
 
 #define LED_BUILTIN 2
 
-struct dipSwitch {
-  byte debug;
-  byte offset;
-  byte three;
-  byte four;
-  byte five;
-  byte six;
-  byte seven;
-  byte eight;
-};
+#define EEPROM_SIZE 256
 
-const dipSwitch DIP = {
-  15,
-  4,
-  27,
-  26,
-  25,
-  33,
-  32,
-  35
-};
+#define offsetAddress 0 //Address where the offsets are stored in EEPROM
 
-struct stepper {
-  byte enablePin;
-  byte directionPin;
-  byte stepPin;
-  int8_t direction;
-};
-
-const stepper stepperLeft = {
-  13,
-  12,
-  14,
-  1
-};
+#define stepsPerRevolution 1600 // Steps needed for one rotation: With 1/8 microstepping its 200*8==1600
 
 
-const stepper stepperRight = {
-  19,
-  18,
-  5,
-  -1
-};
+
 
 
 
