@@ -11,6 +11,8 @@ Was testet with this parts:
  - [ ] Disable driver below certain angle
  - [ ] Disable driver if angle is smaller than step angle
  - [ ] Light up LED if angle is > 10 deg
+   - [x] Light it up
+   - [ ] Hold it on for few seconds
 ## Helpful
  - [x] Allow monitoring the gyro and accel data
  - [x] Store Parameters in Flash
