@@ -9,6 +9,7 @@ Was testet with this parts:
 # Todo
 ## Necessary
  - [ ] Disable driver below certain angle
+ - [ ] Disable driver if angle is smaller than step angle
 ## Helpful
  - [ ] Allow monitoring the gyro and accel data
  - [x] Store Parameters in Flash
