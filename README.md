@@ -18,6 +18,7 @@ Was testet with this parts:
  - [x] Store Parameters in Flash
  - [x] Use DIP switch to select different modes
  - [ ] Play startup sound
+ - [ ] Adjust pid values over serial
 ## Probably needed
  - [ ] Set an angle offset 
 ## Nice to have
