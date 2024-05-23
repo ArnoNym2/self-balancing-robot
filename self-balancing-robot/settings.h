@@ -15,6 +15,8 @@
 
 #define maxNeededAngle 10 //maximum Angle where controler must work
 
+#define ledBilinkTime 500 //How many ms should the led blink
+
 
 #define True true   //I'm dumb and probably will use both variants
 #define False false
