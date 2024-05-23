@@ -8,7 +8,7 @@ Was testet with this parts:
 
 # Todo
 ## Necessary
- - [ ] Disable driver below certain angle
+ - [x] Disable driver below certain angle
  - [ ] Disable driver if angle is smaller than step angle
  - [x] Light up LED if angle is > 10 deg
    - [x] Light it up
