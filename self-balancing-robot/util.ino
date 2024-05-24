@@ -3,6 +3,8 @@
 void initializeDipSwitch(struct dipSwitch _dipSwitch) {
   pinMode(_dipSwitch.debug, INPUT_PULLUP);
   pinMode(_dipSwitch.offset, INPUT_PULLUP);
+  pinMode(_dipSwitch.setPid, INPUT_PULLUP);
+  pinMode(_dipSwitch.plotData, INPUT_PULLUP);
 }
 
 void initializeStepper(struct stepper _stepper) {
