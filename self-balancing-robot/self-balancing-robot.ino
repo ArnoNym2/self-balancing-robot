@@ -111,6 +111,12 @@ PID pid(&Input, &Output, &Setpoint, pidValue.Kp, pidValue.Ki, pidValue.Kd, DIREC
 
 void setup() {
   Serial.begin(115200);
+  dprintln("Project self balancing robot");
+  dprint("Compiled: ");
+  dprint(__DATE__);
+  dprint("\t");
+  dprintln(__TIME__);
+
   initializeDipSwitch(DIP);  //set the pin mode for every dip switch
   pinMode(LED_BUILTIN, OUTPUT);
   initializeStepper(stepperLeft);
@@ -119,12 +125,6 @@ void setup() {
   EEPROM.begin(EEPROM_SIZE);
   debugSetting = digitalRead(DIP.debug);  // Read the debug setting from the DIP Switch, if low than disable debug
 
-
-  dprintln("Project self balancing robot");
-  dprint("Compiled: ");
-  dprint(__DATE__);
-  dprint("\t");
-  dprintln(__TIME__);
 
 
   Wire.begin();
