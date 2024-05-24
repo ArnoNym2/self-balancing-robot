@@ -18,8 +18,16 @@ void dprintln(float message) {
   debugSetting ? Serial.println(message, 2) : nothing();  // Print the float with 2 decimal places
 }
 
+void dprintln(float message, int digits) {
+  debugSetting ? Serial.println(message, digits) : nothing();  
+}
+
 void dprintln(double message) {
   debugSetting ? Serial.println(message, 2) : nothing();  // Print the double with 2 decimal places
+}
+
+void dprintln(double message, int digits) {
+  debugSetting ? Serial.println(message, digits) : nothing();  
 }
 
 void dprintln(unsigned int message) {
@@ -56,8 +64,16 @@ void dprint(float message) {
   debugSetting ? Serial.print(message, 2) : nothing();  // Print the float with 2 decimal places
 }
 
+void dprint(float message, int digits) {
+  debugSetting ? Serial.print(message, digits) : nothing();  // Print the float with 2 decimal places
+}
+
 void dprint(double message) {
   debugSetting ? Serial.print(message, 2) : nothing();  // Print the double with 2 decimal places
+}
+
+void dprint(double message, int digits) {
+  debugSetting ? Serial.print(message, digits) : nothing();  // Print the double with 2 decimal places
 }
 
 void dprint(unsigned int message) {

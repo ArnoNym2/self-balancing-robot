@@ -10,7 +10,11 @@ void dprint(int message);
 
 void dprint(float message);
 
+void dprint(float message, int digits);
+
 void dprint(double message);
+
+void dprint(double message, int digits);
 
 void dprint(unsigned int message);
 
@@ -30,7 +34,11 @@ void dprintln(int message);
 
 void dprintln(float message);
 
+void dprintln(float message, int digits);
+
 void dprintln(double message);
+
+void dprintln(double message, int digits);
 
 void dprintln(unsigned int message);
 
