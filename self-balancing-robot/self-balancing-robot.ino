@@ -23,6 +23,8 @@ uint64_t freq;
 int8_t direction;
 bool overNeededAngle = false;  //True if the Angle is greater than the needed Angle
 int overNeededAngleMillis;
+bool overMaximumAngle = false;
+
 
 struct pidCoefficients {
   double Kp;
@@ -168,7 +170,7 @@ void setup() {
   }
   pid.SetOutputLimits(-90, 90);  //set the output limit to +/- 90 deg
   pid.SetSampleTime(50);         // let the pid calculate every 50 ms
-  pid.SetMode(AUTOMATIC);
+  pid.SetMode(AUTOMATIC);        // begin the controller
 }
 
 void loop() {
