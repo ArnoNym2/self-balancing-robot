@@ -61,6 +61,8 @@ struct stepper {
   byte directionPin;
   byte stepPin;
   int8_t direction;
+  bool disable;  // Here can be set wether the enable pin is low or high active
+                 // Should be disabled with digitalWrite(stepper.enablePin, stepper.disable)
 };
 
 const dipSwitch DIP = {
@@ -89,7 +91,8 @@ const stepper stepperLeft = {
   13,
   12,
   14,
-  1
+  1,
+  HIGH
 };
 
 
@@ -97,7 +100,8 @@ const stepper stepperRight = {
   19,
   18,
   5,
-  -1
+  -1,
+  HIGH
 };
 
 
