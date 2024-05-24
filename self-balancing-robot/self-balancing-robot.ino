@@ -128,7 +128,13 @@ void setup() {
 
 
   Wire.begin();
-  mpu.begin();
+  byte status = mpu.begin();
+  if (status != 0) {
+    dprint("Error initialising mpu: ");
+    dprintln(status);
+    tone(LED_BUILTIN, 2);
+    delay(1000);
+  }
   //Read the offset switch
   //If activated, calculate offset, else read from memory
   if (!digitalRead(DIP.offset)) {
