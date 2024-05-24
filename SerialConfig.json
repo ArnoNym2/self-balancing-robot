@@ -44,18 +44,6 @@
         ],
         "all_data_info": [
             [
-                8,
-                {
-                    "MaxSize": "duration",
-                    "identifier": {
-                        "w": 1.0,
-                        "x": 0.9800000190734863,
-                        "y": 0.7799999713897705,
-                        "z": 0.3100000023841858
-                    }
-                }
-            ],
-            [
                 0,
                 {
                     "MaxSize": "Angle",
@@ -64,18 +52,6 @@
                         "x": 0.25999999046325684,
                         "y": 0.6700000166893005,
                         "z": 0.550000011920929
-                    }
-                }
-            ],
-            [
-                9,
-                {
-                    "MaxSize": "motorRpm",
-                    "identifier": {
-                        "w": 1.0,
-                        "x": 0.6600000262260437,
-                        "y": 0.36000001430511475,
-                        "z": 0.41999998688697815
                     }
                 }
             ],
@@ -92,7 +68,7 @@
                 }
             ],
             [
-                4,
+                2,
                 {
                     "MaxSize": "Accel",
                     "identifier": {
@@ -104,7 +80,7 @@
                 }
             ],
             [
-                5,
+                3,
                 {
                     "MaxSize": "pidAngle",
                     "identifier": {
@@ -116,7 +92,7 @@
                 }
             ],
             [
-                6,
+                4,
                 {
                     "MaxSize": "accelAngle",
                     "identifier": {
@@ -128,7 +104,7 @@
                 }
             ],
             [
-                7,
+                5,
                 {
                     "MaxSize": "dAngle",
                     "identifier": {
@@ -140,7 +116,31 @@
                 }
             ],
             [
-                10,
+                6,
+                {
+                    "MaxSize": "duration",
+                    "identifier": {
+                        "w": 1.0,
+                        "x": 0.9800000190734863,
+                        "y": 0.7799999713897705,
+                        "z": 0.3100000023841858
+                    }
+                }
+            ],
+            [
+                7,
+                {
+                    "MaxSize": "motorRpm",
+                    "identifier": {
+                        "w": 1.0,
+                        "x": 0.6600000262260437,
+                        "y": 0.36000001430511475,
+                        "z": 0.41999998688697815
+                    }
+                }
+            ],
+            [
+                8,
                 {
                     "MaxSize": "stepsNeeded",
                     "identifier": {
@@ -152,7 +152,7 @@
                 }
             ],
             [
-                11,
+                9,
                 {
                     "MaxSize": "direction",
                     "identifier": {
@@ -170,7 +170,7 @@
                     "all_plot_data": [
                         0,
                         1,
-                        4
+                        2
                     ],
                     "autoscale": false,
                     "name": "Plot 1",
@@ -190,7 +190,7 @@
                             1
                         ],
                         [
-                            4,
+                            2,
                             0
                         ]
                     ]
@@ -198,9 +198,9 @@
                 {
                     "all_plot_data": [
                         0,
+                        3,
                         5,
-                        7,
-                        11
+                        9
                     ],
                     "autoscale": true,
                     "name": "Plot 2",
@@ -216,23 +216,23 @@
                             0
                         ],
                         [
+                            3,
+                            0
+                        ],
+                        [
                             5,
                             0
                         ],
                         [
-                            7,
-                            0
-                        ],
-                        [
-                            11,
+                            9,
                             1
                         ]
                     ]
                 },
                 {
                     "all_plot_data": [
-                        10,
-                        9
+                        8,
+                        7
                     ],
                     "autoscale": true,
                     "name": "Plot 3",
@@ -244,18 +244,18 @@
                     "x_axis_realtime": true,
                     "y_axis": [
                         [
-                            10,
+                            8,
                             0
                         ],
                         [
-                            9,
+                            7,
                             1
                         ]
                     ]
                 },
                 {
                     "all_plot_data": [
-                        8
+                        6
                     ],
                     "autoscale": true,
                     "name": "Plot 4",
@@ -267,7 +267,7 @@
                     "x_axis_realtime": true,
                     "y_axis": [
                         [
-                            8,
+                            6,
                             0
                         ]
                     ]
