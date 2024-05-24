@@ -13,6 +13,34 @@ void initializeStepper(struct stepper _stepper) {
   pinMode(_stepper.enablePin, OUTPUT);
 }
 
+void savePidCoefficients(pidCoefficients _pidValue) {
+  dprint("Saving pid to Address ");
+  dprintln(pidAddress);
+  EEPROM.put(pidAddress, _pidValue);
+  dprint("size: ");
+  dprintln(sizeof(_pidValue));
+}
+
+pidCoefficients readPidCoefficients() {
+  pidCoefficients result;
+  dprint("Reading pid from Address");
+  dprintln(pidAddress);
+  EEPROM.get(pidAddress, result);
+  dprint("size: ");
+  dprintln(sizeof(result));
+
+  return result;
+}
+
+void printPidCoefficients(pidCoefficients _pidValue) {
+  dprint("Kp:\t");
+  dprintln(pidValue.Kp, 5);
+  dprint("Ki:\t");
+  dprintln(pidValue.Ki, 5);
+  dprint("Kd:\t");
+  dprintln(pidValue.Kd, 5);
+}
+
 void saveOffset(mpuOffset _offset) {
   dprint("Saving offset to Address ");
   dprintln(offsetAddress);
