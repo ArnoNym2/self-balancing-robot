@@ -7,6 +7,7 @@
 
 
 bool debugSetting = true;
+bool plotData = true;
 
 
 
@@ -39,8 +40,8 @@ pidCoefficients pidValue = {  // Adapt this according to the vehicle
 struct dipSwitch {
   byte debug;
   byte offset;
-  byte three;
-  byte four;
+  byte setPid;
+  byte plotData;
   byte five;
   byte six;
   byte seven;
@@ -125,6 +126,8 @@ void setup() {
   EEPROM.begin(EEPROM_SIZE);
   debugSetting = digitalRead(DIP.debug);  // Read the debug setting from the DIP Switch, if low than disable debug
 
+  plotData = digitalRead(DIP.plotData);
+  dprintln(plotData == true ? "Plotting enabled" : "Plotting disabled");
 
 
   Wire.begin();
