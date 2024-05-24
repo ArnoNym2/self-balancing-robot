@@ -168,14 +168,7 @@ void loop() {
 
 
   if (pid.Compute()) {  // pid calculated new output
-    if (abs(Input) > maxNeededAngle) {
-      tone(LED_BUILTIN, 8);  //Turn on LED if angle is greater than the maximal needed Angle
-      overNeededAngleMillis = millis();
-      overNeededAngle = true;
-    } else if (abs(Input) < maxNeededAngle && overNeededAngle == true && millis() - overNeededAngleMillis > 500) {  //We are in the right range
-      noTone(LED_BUILTIN);
-      overNeededAngle = false;
-    }
+
     duration = micros() - lastmicros;  // Calculate how long the last loop did take, we assume that the next loop has the same duration
     lastmicros = micros();
     dAngle = Setpoint - Output;
@@ -191,6 +184,19 @@ void loop() {
     //tone(stepperLeft.stepPin, freq);
     digitalWrite(stepperRight.directionPin, direction * stepperRight.direction == 1 ? HIGH : LOW);
     // tone(stepperRight.stepPin, freq);
+
+
+    //Turn on LED if angle is greater than the maximal needed Angle
+    if (abs(Input) > maxNeededAngle && overNeededAngle == true) {
+      overNeededAngleMillis = millis();
+    } else if (abs(Input) > maxNeededAngle && overNeededAngle == false) {
+      tone(LED_BUILTIN, 8);
+      overNeededAngleMillis = millis();
+      overNeededAngle = true;
+    } else if (abs(Input) < maxNeededAngle && overNeededAngle == true && millis() - overNeededAngleMillis > ledBlinkTime) {  //We are in the right range
+      noTone(LED_BUILTIN);
+      overNeededAngle = false;
+    }
 
     printGraphs();
   }
