@@ -108,6 +108,19 @@ const stepper stepperRight = {
 };
 
 
+void initializeDipSwitch(struct dipSwitch);
+void initializeStepper(struct stepper);
+void savePidCoefficients(pidCoefficients);
+pidCoefficients readPidCoefficients();
+void printPidCoefficients(pidCoefficients);
+void saveOffset(mpuOffset);
+mpuOffset readOffset();
+void printOffset(mpuOffset);
+void printGraphs();
+void printHelp();
+
+void SerialReader(void *parameter);
+
 MPU6050 mpu(Wire);
 PID pid(&Input, &Output, &Setpoint, pidValue.Kp, pidValue.Ki, pidValue.Kd, DIRECT);
 
