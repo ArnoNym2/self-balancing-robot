@@ -34,11 +34,11 @@ pidCoefficients readPidCoefficients() {
 
 void printPidCoefficients(pidCoefficients _pidValue) {
   dprint("Kp:\t");
-  dprintln(pidValue.Kp, 5);
+  dprintln(_pidValue.Kp, 5);
   dprint("Ki:\t");
-  dprintln(pidValue.Ki, 5);
+  dprintln(_pidValue.Ki, 5);
   dprint("Kd:\t");
-  dprintln(pidValue.Kd, 5);
+  dprintln(_pidValue.Kd, 5);
 }
 
 void saveOffset(mpuOffset _offset) {
