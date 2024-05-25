@@ -19,6 +19,8 @@ void savePidCoefficients(pidCoefficients _pidValue) {
   EEPROM.put(pidAddress, _pidValue);
   dprint("size: ");
   dprintln(sizeof(_pidValue));
+
+  EEPROM.commit();  //Needs to be called
 }
 
 pidCoefficients readPidCoefficients() {
