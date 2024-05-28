@@ -4,12 +4,13 @@
 #include "dprint.h"
 #include <EEPROM.h>
 #include <PID_v1.h>
+#include "esp_task_wdt.h"
 
 
 bool debugSetting = true;
 bool plotData = true;
 
-
+TaskHandle_t Task1;
 
 double Setpoint, Input, Output = 0;  // double is here the same as float
 int lastmicros = 0;
@@ -24,12 +25,12 @@ int8_t direction;
 bool overNeededAngle = false;  //True if the Angle is greater than the needed Angle
 int overNeededAngleMillis;
 bool overMaximumAngle = false;
-
+volatile bool newPidValues = false;  // Used to mark if new pidValues came in
 
 struct pidCoefficients {
-  double Kp;
-  double Ki;
-  double Kd;
+  volatile double Kp;
+  volatile double Ki;
+  volatile double Kd;
 };
 
 pidCoefficients pidValue = {  // Adapt this according to the vehicle
@@ -167,8 +168,6 @@ void setup() {
     offset.yGyro = mpu.getGyroYoffset();
     offset.zGyro = mpu.getGyroZoffset();
 
-
-
     saveOffset(offset);                  // save the offset
     printOffset(offset);                 //print the offset
     while (!digitalRead(DIP.offset)) {}  //Wait till the switch is set to off
@@ -181,10 +180,44 @@ void setup() {
     mpu.setAccOffsets(offset.xAccel, offset.yAccel, offset.zAccel);
     printOffset(offset);  //print the offset
   }
-  pid.SetOutputLimits(-90, 90);  //set the output limit to +/- 90 deg
+
+  if (!digitalRead(DIP.setPid)) {  // We want to set the pid values
+    pidValue = readPidCoefficients();
+    if (isnan(pidValue.Kp) || isnan(pidValue.Ki) || isnan(pidValue.Kd)) {  //manuel set the values if they are not valid
+      dprintln("pid values are nan, setting manually");
+      pidValue = { 1,
+                   0.5,
+                   0.5 };
+      savePidCoefficients(pidValue);
+    }
+    printPidCoefficients(pidValue);
+    xTaskCreatePinnedToCore(
+      SerialReader,   /* Task function. */
+      "SerialReader", /* Name of task. */
+      10000,          /* Stack size of task */
+      NULL,           /* Parameter of the task */
+      2,              /* Priority of the task */
+      &Task1,         /* Task handle to keep track of created task */
+      0);
+
+  } else {  // We just read them
+    dprintln("Reading pid coefficients from flash");
+    pidValue = readPidCoefficients();
+    if (isnan(pidValue.Kp) || isnan(pidValue.Ki) || isnan(pidValue.Kd)) {  //manuel set the values if they are not valid
+      dprintln("pid values are nan, setting manually");
+      pidValue = { 1,
+                   0.5,
+                   0.5 };
+      savePidCoefficients(pidValue);
+    }
+    printPidCoefficients(pidValue);
+  }
+
+  pid.SetOutputLimits(-90, 90);  // set the output limit to +/- 90 deg
   pid.SetSampleTime(50);         // let the pid calculate every 50 ms
   pid.SetMode(AUTOMATIC);        // begin the controller
 }
+
 
 void loop() {
   mpu.update();
@@ -231,6 +264,12 @@ void loop() {
     } else if (abs(Input) < maxNeededAngle && overNeededAngle == true && millis() - overNeededAngleMillis > ledBlinkTime) {  //We are in the right range
       noTone(LED_BUILTIN);
       overNeededAngle = false;
+    }
+
+    if (newPidValues == true) {
+      pid.SetTunings(pidValue.Kp, pidValue.Ki, pidValue.Kd);
+      printPidCoefficients(pidValue);
+      newPidValues = false;
     }
 
     printGraphs();
