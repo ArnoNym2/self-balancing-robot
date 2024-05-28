@@ -20,6 +20,7 @@ Was testet with this parts:
  - [ ] Play startup sound
  - [ ] Adjust pid values over serial
 ## Probably needed
+ - [ ] Calculate the needed steps directly from pid output
  - [ ] Set an angle offset 
 ## Nice to have
  - [ ] Set Wrap Angle in Library
