@@ -181,7 +181,7 @@ void setup() {
     printOffset(offset);  //print the offset
   }
 
-  if (!digitalRead(DIP.setPid)) {  // We want to set the pid values
+  /* if (!digitalRead(DIP.setPid)) {  // We want to set the pid values
     pidValue = readPidCoefficients();
     if (isnan(pidValue.Kp) || isnan(pidValue.Ki) || isnan(pidValue.Kd)) {  //manuel set the values if they are not valid
       dprintln("pid values are nan, setting manually");
@@ -211,7 +211,13 @@ void setup() {
       savePidCoefficients(pidValue);
     }
     printPidCoefficients(pidValue);
-  }
+  }*/
+  pidValue = { 1, 0, 0 };
+  dprintln(pid.GetKp());
+  dprintln(pid.GetKi());
+  dprintln(pid.GetKd());
+
+
 
   pid.SetOutputLimits(-90, 90);  // set the output limit to +/- 90 deg
   pid.SetSampleTime(50);         // let the pid calculate every 50 ms
