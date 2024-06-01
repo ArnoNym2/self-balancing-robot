@@ -228,12 +228,12 @@ void setup() {
 void loop() {
   mpu.update();
   Input = mpu.getAngleY();
-  if (abs(Input > 90)) {  // The vehicle is laying
+   if (Input > 90 || Input < -90) {  // The vehicle is laying
     digitalWrite(stepperRight.enablePin, stepperRight.disable);
     digitalWrite(stepperLeft.enablePin, stepperLeft.disable);
     pid.SetMode(MANUAL);
     overMaximumAngle = true;
-  } else if (abs(Input < 90) && overMaximumAngle == true) {
+  } else if ((Input > -90 && Input < 90) && overMaximumAngle == true) {
     overMaximumAngle = false;
     digitalWrite(stepperRight.enablePin, !stepperRight.disable);
     digitalWrite(stepperLeft.enablePin, !stepperLeft.disable);
