@@ -254,11 +254,13 @@ void loop() {
 
     //set the direction by multiplying the direction with the direction bias
     //then write the pin if it is HIGH, else (it should be -1) set it to LOW
-    digitalWrite(stepperLeft.directionPin, direction * stepperLeft.direction == 1 ? HIGH : LOW);
-    //tone(stepperLeft.stepPin, freq);
-    digitalWrite(stepperRight.directionPin, direction * stepperRight.direction == 1 ? HIGH : LOW);
-    // tone(stepperRight.stepPin, freq);
+    if (abs(Output) > 360. / stepsPerRevolution) {
+      digitalWrite(stepperLeft.directionPin, direction * stepperLeft.direction == 1 ? HIGH : LOW);
+      tone(stepperLeft.stepPin, freq);
 
+      digitalWrite(stepperRight.directionPin, direction * stepperRight.direction == 1 ? HIGH : LOW);
+      tone(stepperRight.stepPin, freq);
+    }
 
     //Turn on LED if angle is greater than the maximal needed Angle
     if (abs(Input) > maxNeededAngle && overNeededAngle == true) {
