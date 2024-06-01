@@ -245,13 +245,21 @@ void loop() {
 
     duration = micros() - lastmicros;  // Calculate how long the last loop did take, we assume that the next loop has the same duration
     lastmicros = micros();
-    dAngle = Setpoint - Output;
+    // dAngle = Setpoint - Output;
 
-    stepsNeeded = (unsigned int)stepsPerRevolution / dAngle;  // Calculate how many steps are needed to reach pid's target Angle
-    freq = 1000000 * stepsNeeded / duration;                  // The frequency needed to reach the given angle in Hz
+    //stepsNeeded = (unsigned int)stepsPerRevolution / dAngle;  // Calculate how many steps are needed to reach pid's target Angle
+    //freq = 1000000 * stepsNeeded / duration;                  // The frequency needed to reach the given angle in Hz
+    //We should calculate the angle directly from the output since the pid should take care of the difference
 
-    direction = dAngle > 0 ? 1 : -1;
+    // stepsNeeded = (unsigned int)stepsPerRevolution / Output;
+    // freq = 1000000 * stepsNeeded / duration;
+
     stepsNeeded = abs((Output / 360) * stepsPerRevolution);
+    freq = 1000000 * stepsNeeded / duration;  // The frequency needed to reach the given angle in Hz
+
+    //same here
+    //direction = dAngle > 0 ? 1 : -1;
+    direction = Output > 0 ? 1 : -1;
 
     //set the direction by multiplying the direction with the direction bias
     //then write the pin if it is HIGH, else (it should be -1) set it to LOW
