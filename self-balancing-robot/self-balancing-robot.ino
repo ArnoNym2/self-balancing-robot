@@ -256,6 +256,7 @@ void loop() {
 
     stepsNeeded = abs((Output / 360) * stepsPerRevolution);
     freq = 1000000 * stepsNeeded / duration;  // The frequency needed to reach the given angle in Hz
+    //This probably needs to be set to a fix value if it changes to much
 
     //same here
     //direction = dAngle > 0 ? 1 : -1;
