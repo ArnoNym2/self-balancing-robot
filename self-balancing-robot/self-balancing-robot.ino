@@ -95,7 +95,7 @@ const stepper stepperLeft = {
   13,
   12,
   14,
-  1,
+  -1,
   HIGH
 };
 
@@ -104,7 +104,7 @@ const stepper stepperRight = {
   19,
   18,
   5,
-  -1,
+  1,
   HIGH
 };
 
