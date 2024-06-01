@@ -192,12 +192,12 @@ void setup() {
     }
     printPidCoefficients(pidValue);
     xTaskCreatePinnedToCore(
-      SerialReader,   /* Task function. */
-      "SerialReader", /* Name of task. */
-      10000,          /* Stack size of task */
-      NULL,           /* Parameter of the task */
-      2,              /* Priority of the task */
-      &Task1,         /* Task handle to keep track of created task */
+      SerialReader,   // Task function. 
+      "SerialReader", // Name of task. 
+      10000,          // Stack size of task 
+      NULL,           // Parameter of the task 
+      2,              // Priority of the task 
+      &Task1,         // Task handle to keep track of created task 
       0);
 
   } else {  // We just read them
