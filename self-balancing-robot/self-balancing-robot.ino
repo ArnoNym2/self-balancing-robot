@@ -258,11 +258,11 @@ void loop() {
     if (abs(Input) > maxNeededAngle && overNeededAngle == true) {
       overNeededAngleMillis = millis();
     } else if (abs(Input) > maxNeededAngle && overNeededAngle == false) {
-      tone(LED_BUILTIN, 8);
+      digitalWrite(LED_BUILTIN, HIGH);
       overNeededAngleMillis = millis();
       overNeededAngle = true;
     } else if (abs(Input) < maxNeededAngle && overNeededAngle == true && millis() - overNeededAngleMillis > ledBlinkTime) {  //We are in the right range
-      noTone(LED_BUILTIN);
+      digitalWrite(LED_BUILTIN, LOW);
       overNeededAngle = false;
     }
 
