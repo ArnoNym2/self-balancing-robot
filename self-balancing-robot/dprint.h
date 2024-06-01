@@ -1,3 +1,4 @@
+#include <stdint.h>
 #ifndef dprint_h
 #define dprint_h
 #include <Arduino.h>
@@ -26,6 +27,8 @@ void dprint(byte message);
 
 void dprint(bool message);
 
+void dprint(uint64_t message);
+
 
 //Same without newline
 void dprintln(const char* message);
@@ -49,6 +52,8 @@ void dprintln(unsigned long message);
 void dprintln(byte message);
 
 void dprintln(bool message);
+
+void dprintln(uint64_t message);
 
 
 

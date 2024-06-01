@@ -50,6 +50,10 @@ void dprintln(bool message) {
   debugSetting ? (Serial.println(message ? "True" : "False")) : nothing();
 }
 
+void dprintln(uint64_t message){
+  debugSetting ? Serial.print(message) : nothing();
+}
+
 
 //Same without newline
 void dprint(const char* message) {
@@ -94,4 +98,8 @@ void dprint(byte message) {
 
 void dprint(bool message) {
   debugSetting ? (Serial.print(message ? "True" : "False")) : nothing();
+}
+
+void dprint(uint64_t message){
+  debugSetting ? Serial.print(message) : nothing();
 }
