@@ -251,6 +251,7 @@ void loop() {
     freq = 1000000 * stepsNeeded / duration;                  // The frequency needed to reach the given angle in Hz
 
     direction = dAngle > 0 ? 1 : -1;
+    stepsNeeded = abs((Output / 360) * stepsPerRevolution);
 
     //set the direction by multiplying the direction with the direction bias
     //then write the pin if it is HIGH, else (it should be -1) set it to LOW
