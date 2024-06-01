@@ -186,8 +186,8 @@ void setup() {
     if (isnan(pidValue.Kp) || isnan(pidValue.Ki) || isnan(pidValue.Kd)) {  //manuel set the values if they are not valid
       dprintln("pid values are nan, setting manually");
       pidValue = { 1,
-                   0.5,
-                   0.5 };
+                   0,
+                   0 };
       savePidCoefficients(pidValue);
     }
     printPidCoefficients(pidValue);
@@ -206,8 +206,8 @@ void setup() {
     if (isnan(pidValue.Kp) || isnan(pidValue.Ki) || isnan(pidValue.Kd)) {  //manuel set the values if they are not valid
       dprintln("pid values are nan, setting manually");
       pidValue = { 1,
-                   0.5,
-                   0.5 };
+                   0,
+                   0 };
       savePidCoefficients(pidValue);
     }
     printPidCoefficients(pidValue);
