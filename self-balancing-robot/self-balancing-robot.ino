@@ -35,8 +35,8 @@ struct pidCoefficients {
 
 pidCoefficients pidValue = {  // Adapt this according to the vehicle
   1,
-  0.5,
-  0.5
+  0,
+  0
 };
 
 
