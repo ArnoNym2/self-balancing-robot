@@ -9,7 +9,8 @@ Was testet with this parts:
 # Todo
 ## Necessary
  - [x] Disable driver below certain angle
- - [ ] Disable driver if angle is smaller than step angle
+ - [x] Disable driver if angle is smaller than step angle
+ - [ ] Restart if mpu failed 
  - [x] Light up LED if angle is > 10 deg
    - [x] Light it up
    - [x] Hold it on for few seconds
@@ -20,7 +21,7 @@ Was testet with this parts:
  - [ ] Play startup sound
  - [ ] Adjust pid values over serial
 ## Probably needed
- - [ ] Calculate the needed steps directly from pid output
+ - [x] Calculate the needed steps directly from pid output
  - [ ] Set an angle offset 
 ## Nice to have
  - [ ] Set Wrap Angle in Library
