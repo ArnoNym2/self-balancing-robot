@@ -19,6 +19,8 @@
 
 #define ledBlinkTime 500  //How many ms should the led blink
 
+#define maxNeededTime 330
+
 
 #define True true  //I'm dumb and probably will use both variants
 #define False false

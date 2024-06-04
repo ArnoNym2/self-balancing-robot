@@ -28,6 +28,9 @@ bool overMaximumAngle = false;
 volatile bool newPidValues = false;  // Used to mark if new pidValues came in
 
 struct pidCoefficients {
+
+//uint32_t jokeTime = 0;
+//bool doJoke = false;
   volatile double Kp;
   volatile double Ki;
   volatile double Kd;
@@ -220,6 +223,10 @@ void setup() {
   dprintln(pid.GetKd());
 
 
+  /*if (!digitalRead(DIP.joke)) {  //Do the joke
+    doJoke = true;
+  }*/
+
 
   pid.SetOutputLimits(-90, 90);  // set the output limit to +/- 90 deg
   pid.SetSampleTime(50);         // let the pid calculate every 50 ms
@@ -234,6 +241,7 @@ void loop() {
     digitalWrite(stepperRight.enablePin, stepperRight.disable);
     digitalWrite(stepperLeft.enablePin, stepperLeft.disable);
     // pid.SetMode(MANUAL);
+    //jokeTime = 0;
     overMaximumAngle = true;
   } else if ((Input > -90 && Input < 90) && overMaximumAngle == true) {
     overMaximumAngle = false;
@@ -293,5 +301,11 @@ void loop() {
     }
 
     printGraphs();
+    /* if (doJoke == true) {
+      if (jokeTime > maxNeededTime * 1000) {
+        pid.SetTunings(pid.GetKp() += 0.01, pid.GetKi(), pid.GetKd());
+      }
+      jokeTime += 50;
+    }*/
   }
 }
