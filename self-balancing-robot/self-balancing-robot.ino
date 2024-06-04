@@ -151,8 +151,10 @@ void setup() {
   if (status != 0) {
     dprint("Error initialising mpu: ");
     dprintln(status);
-    tone(LED_BUILTIN, 2);
-    delay(1000);
+    tone(LED_BUILTIN, 2);  //Let the led blink
+    errorSound();          //Play the error sound
+    delay(3000);
+    ESP.restart();  //Restart the esp hoping the error will magically fix itself
   }
   //Read the offset switch
   //If activated, calculate offset, else read from memory

@@ -79,6 +79,12 @@ void printOffset(mpuOffset _offset) {
   dprintln(_offset.zAccel);
 }
 
+void errorSound() {
+  tone(stepperLeft.stepPin, 392 * 2, 125);
+  tone(stepperLeft.stepPin, 293 * 2, 125);
+  delay(250);
+}
+
 void printGraphs() {  //Prints the values in a way that allows to use Serial Plotter
   if (plotData == true) {
 
