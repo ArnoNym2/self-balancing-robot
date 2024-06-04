@@ -101,14 +101,14 @@ void printGraphs() {  //Prints the values in a way that allows to use Serial Plo
     dprint(Output);
     dprint("\t");
     //dprint("\taccelAngle:");
-    //dprint(mpu.getAccAngleY());
-    //dprint("\t");
+    dprint(mpu.getAccAngleY());
+    dprint("\t");
     //dprint("\tdAngle:");
     //dprint(dAngle);
     //dprint("\t");
     //dprint("\tduration:");
-    // dprint(duration);
-    // dprint("\t");
+    dprint(duration);
+    dprint("\t");
     //dprint("\tmotorRpm:");
     dprint(60. * freq / stepsPerRevolution);
     dprint("\t");
@@ -117,7 +117,6 @@ void printGraphs() {  //Prints the values in a way that allows to use Serial Plo
     dprint("\t");
     dprint(freq);
     dprint("\t");
-
     //dprint("\tdirection:");
     dprint(direction);
     dprintln("");
